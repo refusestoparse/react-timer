@@ -7,39 +7,43 @@ function App() {
   const [hours, setHours] = useState(0)
   const start = new Date("2024-08-18").getTime()
   const [time, setTime] = useState(start)
-  let run=false
-  useEffect(() => {
-   const interval = setInterval(() => {
-      startTimer()
+  const [run, setRun] = useState(false)
+ let pause 
   
-   }, 1000);
 
-   return () => clearInterval(interval);
- }, []);
+
+   
+ useEffect(() => {
+
+  const interval = setInterval(() => {
+      if(run){
+        runTimer()
+      }
   
+  }, 1000);
+
+  return () => clearInterval(interval);
+}
+
+, [run]);
   
- function startTimer(){
-   setTime(Date.now);
+
+  
+ function runTimer(){
    console.log("handling state...")
-      let now =Date.now()
-     let  second = now-start
-  
-     setSeconds(second/1000)
-     // setMinutes(minute)
-     // setHours(hour)
-  
   
    console.log("State handled")
-   
   }
 
-
+function onoff() {
+  setRun(!run)
+}
   
   return (
     <>
       <h1>{hours} : {minutes} : {seconds}</h1>
-      <button onClick={startTimer}>Start</button>
-      <button>Stop</button>
+      <button onClick={onoff}>Start</button>
+      <button onClick={onoff}>Stop</button>
     </>
   )
 }
