@@ -5,45 +5,84 @@ function App() {
   const [seconds, setSeconds] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [hours, setHours] = useState(0)
-  const start = new Date("2024-08-18").getTime()
-  const [time, setTime] = useState(start)
   const [run, setRun] = useState(false)
- let pause 
-  
-
+  const [laps,setLaps] = useState<any[]>([])
+  let s = seconds
+  let m = minutes
+  let h = hours
+  let pause = {  key:Date.now(), hours:hours, minutes:minutes, seconds:seconds }
+ 
 
    
  useEffect(() => {
 
   const interval = setInterval(() => {
-      if(run){
+      if(run==true){
+
         runTimer()
+
       }
-  
   }, 1000);
 
-  return () => clearInterval(interval);
+   return () => clearInterval(interval);
 }
 
-, [run]);
-  
+, [run ]);
 
-  
- function runTimer(){
-   console.log("handling state...")
-  
-   console.log("State handled")
+function runTimer(){
+  s = s+1
+  if(s === 60){
+   m =  m + 1 
+   s = 0 
+   if(m === 60){
+     h = h + 1
+     m = 0
+   }
+
   }
 
-function onoff() {
-  setRun(!run)
+  setSeconds(s)
+  setMinutes(m)
+  setHours(h)
+  pause.hours = h
+  pause.minutes = m
+  pause.seconds = s
+  
 }
+
+function updateLapList(){
+  setRun(!run)
+  laps.push(pause)
+  drawLapList()
+}
+
+function drawLapList(){
+  console.log(laps)
+}
+
+function on() {
+  setRun(true)
+}
+
+function off(){
+  console.log("Stopping timer ...")
+  setRun(false)
+  setSeconds(0)
+  setMinutes(0)
+  setHours(0)
+}
+
+
   
   return (
     <>
       <h1>{hours} : {minutes} : {seconds}</h1>
-      <button onClick={onoff}>Start</button>
-      <button onClick={onoff}>Stop</button>
+      <button onClick={on}>Start</button>
+      <button onClick={updateLapList}>Lap</button>
+      <button onClick={off}>Clear</button>
+
+
+      
     </>
   )
 }
