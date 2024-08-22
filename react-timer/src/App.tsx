@@ -51,12 +51,12 @@ function runTimer(){
 }
 
 function updateLapList(){
-  setRun(!run)
   laps.push(pause)
   drawLapList()
 }
 
 function drawLapList(){
+  console.log("laps drawn")
   console.log(laps)
 }
 
@@ -76,11 +76,18 @@ function off(){
   
   return (
     <>
+    <div id="timer">
       <h1>{hours} : {minutes} : {seconds}</h1>
       <button onClick={on}>Start</button>
       <button onClick={updateLapList}>Lap</button>
       <button onClick={off}>Clear</button>
-
+    </div>
+    <div id="laps">
+      <ul>
+        {laps.map((l) => <li key={l.key}>{l.hours}:{l.minutes}:{l.seconds}</li>)}
+      </ul>
+    </div>
+      
 
       
     </>
