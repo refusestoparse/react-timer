@@ -7,20 +7,23 @@ function App() {
   const [hours, setHours] = useState(0)
   const [run, setRun] = useState(false)
   const [laps,setLaps] = useState<any[]>([])
+  const [button, setButton] = useState("Start")
   let s = seconds
   let m = minutes
   let h = hours
   let pause = {  key:Date.now(), hours:hours, minutes:minutes, seconds:seconds }
- 
+  
 
    
  useEffect(() => {
 
   const interval = setInterval(() => {
       if(run==true){
-
         runTimer()
-
+        setButton("Pause")
+      }
+      if(run == false){
+       setButton("Start")
       }
   }, 1000);
 
@@ -61,7 +64,7 @@ function drawLapList(){
 }
 
 function on() {
-  setRun(true)
+  setRun(!run)
 }
 
 function off(){
@@ -70,26 +73,28 @@ function off(){
   setSeconds(0)
   setMinutes(0)
   setHours(0)
+  setLaps([])
 }
 
 
   
   return (
     <>
-    <div id="timer">
-      <h1>{hours} : {minutes} : {seconds}</h1>
-      <button onClick={on}>Start</button>
-      <button onClick={updateLapList}>Lap</button>
-      <button onClick={off}>Clear</button>
-    </div>
-    <div id="laps">
-      <ul>
-        {laps.map((l) => <li key={l.key}>{l.hours}:{l.minutes}:{l.seconds}</li>)}
-      </ul>
-    </div>
-      
-
-      
+     <div className="moduleBox">
+        <h1 id="time">{hours} : {minutes} : {seconds}</h1>
+        <div id="buttons">
+                <button onClick={on}>{button}</button>
+                <button onClick={updateLapList}>Lap</button>
+                <button onClick={off}>Clear</button> 
+        </div>
+          <div className="center">
+            <ul id="list">
+               {laps.map((l) => <li key={l.key}>{l.hours}:{l.minutes}:{l.seconds}</li>)}
+             </ul>
+          </div>
+     </div>
+       
+     
     </>
   )
 }

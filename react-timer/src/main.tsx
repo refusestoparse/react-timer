@@ -5,6 +5,23 @@ import './index.css'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <h1 className="center">
+      Two Timers
+    </h1>
+    <h3 className="center"> These two timers are able to run and keep track
+      of laps asycnronously! 
+    </h3>
+
+  <div className="timers">
+  <div id="one">
+    <App  />
+    </div>
+    
+    <div id="two">
+    <App  />
+    </div>
+  </div>
+
+
   </StrictMode>,
 )
