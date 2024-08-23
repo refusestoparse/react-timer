@@ -17,36 +17,40 @@ button{
   background: rgb(5, 185, 230);
   --hover-borderSize: 0px;
 }
-.center{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.even{
-  display: flex;
-  flex-flow: row;
-  justify-content: space-evenly;
- }
+
  h1{
   font-size: 50px;
- }
-
- .timers{
-  display:flex;
-  justify-content:space-evenly;
- }
- #one{
-  width:25%;
-  height:25%;
-  min-height: 25%;
-  padding: 2%;
   
  }
- #two{
-  width:25%;
-  height:25%;
-  min-height: 25%;
-  padding: 2%;
- 
+.center{
+ text-align: center;
+}
+
+ .timer{
+width: 100%;
+  
  }
+ 
+ #page{
+  padding-left:5%;
+  padding-right:5%;
+  display: flex;
+  justify-content: left;
+  gap:5%;
+ }
+ #timers{
+  width: 20%;
+  padding-left:2%;
+  padding-right:2%;
+ 
+
+ }
+ #write-up{
+  width: 80%;
+  padding-left:2%;
+  padding-right:2%;
+
+  
+ }
+
 

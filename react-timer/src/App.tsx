@@ -47,6 +47,8 @@ function runTimer(){
   setSeconds(s)
   setMinutes(m)
   setHours(h)
+
+  
   pause.hours = h
   pause.minutes = m
   pause.seconds = s
@@ -87,7 +89,7 @@ function off(){
                 <button onClick={updateLapList}>Lap</button>
                 <button onClick={off}>Clear</button> 
         </div>
-          <div className="center">
+          <div >
             <ul id="list">
                {laps.map((l) => <li key={l.key}>{l.hours}:{l.minutes}:{l.seconds}</li>)}
              </ul>

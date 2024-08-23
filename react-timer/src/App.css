@@ -1,15 +1,16 @@
-ul {
+ul#list {
   display: flex;
   flex-flow: wrap row;
-  max-height: 15vh; /* Limit height to whatever you need */
+  justify-content:space-evenly ;
+  max-height: 10vh; 
+  max-width: 100%;
+  overflow: auto;
   gap:1em;
   list-style-type: none;
-  
+  font-size: 30px;
 }
 
-.moduleBox{
 
-}
 #time{
   display: flex;
   justify-content: center;
@@ -21,16 +22,5 @@ ul {
   justify-content: center;
   align-items: center;
   gap:1em;
-}
-
-#list{
-  display: flex;
-  justify-content:space-evenly ;
-  overflow-x: hidden;
-  overflow-y: auto;
-  gap:.5em;
-  padding:1%;
-  font-size: 30px;
-
 }
 
