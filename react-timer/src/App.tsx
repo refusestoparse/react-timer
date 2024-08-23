@@ -14,15 +14,18 @@ function App() {
   let pause = {  key:Date.now(), hours:hours, minutes:minutes, seconds:seconds }
   
 
-   
+ 
  useEffect(() => {
 
   const interval = setInterval(() => {
+    //checks if start button has been clicked changing the state of run to 'true
       if(run==true){
+        //starts timer and changes the text of the start button to "Pause"
         runTimer()
         setButton("Pause")
       }
       if(run == false){
+        // this sets the button state back to Start
        setButton("Start")
       }
   }, 1000);
@@ -33,44 +36,42 @@ function App() {
 , [run ]);
 
 function runTimer(){
+  //adds second every time it is called to count up the seconds
   s = s+1
   if(s === 60){
+    // once the seconds hit 60 rolls over to a minute and sets seconds to zero to start counting again
    m =  m + 1 
    s = 0 
    if(m === 60){
+     //minute process repeats once 60 minutes have been counted rolls over to count up one hour
      h = h + 1
      m = 0
    }
 
   }
-
+  
+  //these set the state to reflect on the timer
   setSeconds(s)
   setMinutes(m)
-  setHours(h)
-
-  
-  pause.hours = h
-  pause.minutes = m
-  pause.seconds = s
-  
+  setHours(h) 
 }
 
 function updateLapList(){
+    //these push the current time to pause object
+    pause.hours = h 
+    pause.minutes = m
+    pause.seconds = s
+  //this adds whatever the current pause time 
   laps.push(pause)
-  drawLapList()
-}
-
-function drawLapList(){
-  console.log("laps drawn")
-  console.log(laps)
 }
 
 function on() {
+  //this toggles the run state to on or off
   setRun(!run)
 }
 
 function off(){
-  console.log("Stopping timer ...")
+  // this sets the run state to false to stop the timer. it also resets the timer state back to 0
   setRun(false)
   setSeconds(0)
   setMinutes(0)
